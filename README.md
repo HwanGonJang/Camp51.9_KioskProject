@@ -87,7 +87,12 @@ html css javascript를 공부하는 동시에 파이썬을 활용하여 메이�
  ### 카테고리 페이지
  <img width="500" src="https://user-images.githubusercontent.com/33739448/102470110-eb301100-4096-11eb-9f37-7805079293b4.png">      
  ### 선택 페이지
- <img width="500" src="https://user-images.githubusercontent.com/33739448/102472432-a3f74f80-4099-11eb-90cf-0f9293ee9119.png">       
+ <img width="500" src="https://user-images.githubusercontent.com/33739448/102472432-a3f74f80-4099-11eb-90cf-0f9293ee9119.png">     
+ 
+ ### 파이어베이스 연동(Realtime Database)     
+ 회원가입 정보, 로그인 정보, 시간 정보, 사용 정보 등을 파이어베이스와 연동. (후에 자동 문서화 개발 예정)
+ <img width="500" src="https://user-images.githubusercontent.com/33739448/102473412-c76eca00-409a-11eb-9761-5f6e2ced563c.png">
+ 
  
  
  
