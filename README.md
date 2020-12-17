@@ -80,14 +80,18 @@ html css javascript를 공부하는 동시에 파이썬을 활용하여 메이�
  
 ## ~2020/12/17
  로그인 페이지, 회원가입 페이지, 카테고리 페이지, 선택 페이지 등 구현 및 연결(레이어 팝업 구현에 애먹었음)     
- ### 로그인 페이지
- <img width="500" src="https://user-images.githubusercontent.com/33739448/102472006-321f0600-4099-11eb-880f-d06bfce8f716.png">     
- ### 회원가입 페이지
- <img width="500" src="https://user-images.githubusercontent.com/33739448/102472830-09e3d700-409a-11eb-867f-e6640d97adfe.png">      
- ### 카테고리 페이지
- <img width="500" src="https://user-images.githubusercontent.com/33739448/102470110-eb301100-4096-11eb-9f37-7805079293b4.png">      
- ### 선택 페이지
- <img width="500" src="https://user-images.githubusercontent.com/33739448/102472432-a3f74f80-4099-11eb-90cf-0f9293ee9119.png">     
+ ### 로그인 페이지     
+ <img width="300" src="https://user-images.githubusercontent.com/33739448/102472006-321f0600-4099-11eb-880f-d06bfce8f716.png">     
+ 
+ ### 회원가입 페이지     
+ <img width="300" src="https://user-images.githubusercontent.com/33739448/102472830-09e3d700-409a-11eb-867f-e6640d97adfe.png">      
+ 
+ ### 카테고리 페이지     
+ <img width="300" src="https://user-images.githubusercontent.com/33739448/102470110-eb301100-4096-11eb-9f37-7805079293b4.png">      
+ 
+ ### 선택 페이지      
+ <img width="300" src="https://user-images.githubusercontent.com/33739448/102472432-a3f74f80-4099-11eb-90cf-0f9293ee9119.png">     
+ 
  
  ### 파이어베이스 연동(Realtime Database)     
  회원가입 정보, 로그인 정보, 시간 정보, 사용 정보 등을 파이어베이스와 연동. (후에 자동 문서화 개발 예정)
