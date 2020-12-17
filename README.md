@@ -2,16 +2,16 @@
 html css javascript를 공부하는 동시에 파이썬을 활용하여 메이커 스페이스 키오스크를 직접 개발하는 프로젝트
 
 ## 개요
- 숭실대학교 CiAi의 html 스터디와 더불어 파이썬을 활용하여 직접 개발을 통해 공부하고 또 사용한다.
+ 숭실대학교 CiAi의 html 스터디와 더불어 파이썬을 활용하여 직접 개발을 통해 공부하고 또 사용한다.     
  이용자들의 마스크 착용여부, 체온, 이용시간, 이용장비, 시설 등을 웹 어플리케이션으로 입력받는 키오스크 제작 및 파이어베이스 연동을 통해 문서화한다.
 
 ## ~2020/11/25
- 파이썬, 텐서플로우, openCV 등 라이브러리를 활용한 마스크 감지 프로그램 실행.
+ 파이썬, 텐서플로우, openCV 등 라이브러리를 활용한 마스크 감지 프로그램 실행.     
  출처: https://github.com/balajisrinivas/Face-Mask-Detection
  
- 아나콘다 가상환경에 프로젝트 생성 후 실행 성공.
+ 아나콘다 가상환경에 프로젝트 생성 후 실행 성공.     
  => detect_mask_video.py 소스파일을 아두이노와 통신하여 체온을 웹캠에 출력 및 체온, 마스크 감지 후 자동으로 로그인 사이트로 돌아가도록 추가.
- 후에 html과 
+ 후에 html과 병합.      
  (detect_mask_video.py 일부, 마스크 감지 인공지능 실행 반복문)
  
     while True:
@@ -75,19 +75,21 @@ html css javascript를 공부하는 동시에 파이썬을 활용하여 메이�
     webbrowser.open('file://' + os.path.join(BASE_DIR, 'htmlProject/loginCamp.html'))
 
 ## ~2020/12/9
- 오븐 제작 및 간단한 로그인 페이지, 카테고리 페이지, 선택 페이지 구성 및 파이썬 프로그램 병합
- https://ovenapp.io/project/VXgARFiUcyrD0d6ypFkhgyvldzwCL3Xf#82UF4
+ 오븐 제작 및 간단한 로그인 페이지, 카테고리 페이지, 선택 페이지 구성 및 파이썬 프로그램 병합     
+ 링크:https://ovenapp.io/project/VXgARFiUcyrD0d6ypFkhgyvldzwCL3Xf#82UF4
  
 ## ~2020/12/17
- 로그인 페이지, 회원가입 페이지, 카테고리 페이지, 선택 페이지 등 구현 및 연결(레이어 팝업 구현에 애먹었음)
+ 로그인 페이지, 회원가입 페이지, 카테고리 페이지, 선택 페이지 등 구현 및 연결(레이어 팝업 구현에 애먹었음)     
  ### 로그인 페이지
- <img width="500" src="https://user-images.githubusercontent.com/33739448/102472006-321f0600-4099-11eb-880f-d06bfce8f716.png">
+ <img width="500" src="https://user-images.githubusercontent.com/33739448/102472006-321f0600-4099-11eb-880f-d06bfce8f716.png">     
  ### 회원가입 페이지
- <img width="500" src="https://user-images.githubusercontent.com/33739448/102472830-09e3d700-409a-11eb-867f-e6640d97adfe.png">
+ <img width="500" src="https://user-images.githubusercontent.com/33739448/102472830-09e3d700-409a-11eb-867f-e6640d97adfe.png">      
  ### 카테고리 페이지
- <img width="500" src="https://user-images.githubusercontent.com/33739448/102470110-eb301100-4096-11eb-9f37-7805079293b4.png">
+ <img width="500" src="https://user-images.githubusercontent.com/33739448/102470110-eb301100-4096-11eb-9f37-7805079293b4.png">      
  ### 선택 페이지
- <img width="500" src="https://user-images.githubusercontent.com/33739448/102472432-a3f74f80-4099-11eb-90cf-0f9293ee9119.png">
+ <img width="500" src="https://user-images.githubusercontent.com/33739448/102472432-a3f74f80-4099-11eb-90cf-0f9293ee9119.png">       
+ 
+ 
  
  
  
