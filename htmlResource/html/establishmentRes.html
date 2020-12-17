@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Camp51.9 Kiosk</title>
+    <link rel="stylesheet" type="text/css" href="default.css">
+    <link rel="stylesheet" type="text/css" href="styleEstablishment.css">
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.2.0/firebase.js"></script>
+</head>
+<body>
+    <header>
+        <img src="camp.png" width="150" height="150"
+        alt="No Image"><br>
+        <h2><strong>Camp51.9</strong></h2>
+    </header>
+
+    <h2><span id="loginName"></span> 님</h2> 
+
+    <section>
+        <article style="display: block; margin: 0 auto;">
+            <img src="LOBBY.jpg" width="150" height="150"
+            alt="시설 이용">
+            <img src="SEMINAR.jpg" width="150" height="150"
+            alt="장비 사용">
+            <h2 class="click" id="signinButton">로비(30인)</h2>
+            <h2><strong>세미나실(12인)</strong></h2>
+        </article>
+
+        <div class="popupConfirm" id="pop">
+            
+            <h2><span id="lobbyConfirm"></span></h2><br>
+            <h2>이용하시겠습니까?</h2>
+                <div class="txt_center">
+                <a href="confirm.html" class="confirm_btn">확인</a>
+                </div>
+                <a href="establishmentRes.html" class="close">닫기</a>
+                </div>
+                <div class="dim"></div>
+
+        <div class="popupL" id="pop">
+            <h2>로비(30인)</h2><br>
+            <h2>잔여 좌석: <span id="lobby"></span>석</h2>
+
+            <select name="timeLH" id="lobbytimeH">
+                <option value="">시간</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="4">5</option>
+            </select>
+            시간
+            <select name="timeLM" id="lobbytimeM">
+                <option value="">분</option>
+                <option value="0">0</option>
+                <option value="30">30</option>
+            </select>
+            분
+  
+              <div class="txt_center">
+                <h2 class="btn_type1" id="writeFunc">로비 이용하기</h2>
+              </div>
+                <a href="#a" class="close">닫기</a>
+              </div>
+              <div class="dim"></div> 
+
+        <div class="popupLW" id="pop">
+            <h2>로비(30인)</h2><br>
+            <h2>잔여 좌석: <span id="lobbyW"></span>석</h2>
+      
+                <div class="txt_center">
+                <a href="establishmentRes.html" class="btn_type2">이용불가</a>
+                </div>
+                <a href="establishmentRes.html" class="close">닫기</a>
+                </div>
+                <div class="dim"></div> 
+
+
+        <article style="display: block; margin: 0 auto;">
+            <img src="CARPENTRY.jpg" width="150" height="150"
+            alt="행사 참여">
+            <img src="PC.jpg" width="150" height="150"
+            alt="기타">
+            <h2><strong>목공실(5인)</strong></h2>
+            <h2><strong>컴퓨터실(28인)</strong></h2>
+        </article>
+
+        <nav>
+            <br><a href=test.html>HOME으로</a>
+            <a href=reservation.html>이전 페이지</a>
+        </nav>
+    </section>
+    <script>
+        // Your web app's Firebase configuration
+        // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+        var firebaseConfig = {
+        apiKey: "AIzaSyC5_G3RZhRjxLyh27AmjTNXX2ul1uMF9OI",
+        authDomain: "test-90278.firebaseapp.com",
+        projectId: "test-90278",
+        storageBucket: "test-90278.appspot.com",
+        messagingSenderId: "315329074324",
+        appId: "1:315329074324:web:3bfb0adda43868a8975081",
+        measurementId: "G-96ZE5HQBEJ"
+      };
+      // Initialize Firebase
+      firebase.initializeApp(firebaseConfig);
+     
+      </script>
+  
+      <script type="text/javascript">
+        var signinButton = document.getElementById("signinButton") // 버튼을 만들고.
+        signinButton.addEventListener('click', signinFunc) // 'click'이란 id의 버튼을 누르면 signinFunc 함수를 실행.
+        function signinFunc () {
+		    $(".popupL").show();
+            $(".dim").show();
+            var dbTestRef1 = firebase.database().ref('Establishment/Lobby/')
+            dbTestRef1.on('child_added', function(data){
+            document.getElementById("lobby").innerHTML=data.val();
+            if(data.val() <= 0) {
+                $(".popupLW").show();
+                
+                document.getElementById("lobbyW").innerHTML=data.val();
+            }
+        })
+        }
+        
+	    $(".popupL .close").on('click',function(){
+		    $(this).parent().hide();
+		    $(".dim").hide();
+        }); 
+        $(".popupLW .close").on('click',function(){
+		    $(this).parent().hide();
+		    $(".dim").hide();
+        });  
+
+        var signinButton = document.getElementById("writeFunc") // 버튼을 만들고.
+        signinButton.addEventListener('click', writeFunc) // 'click'이란 id의 버튼을 누르면 signinFunc 함수를 실행.
+        function writeFunc () {
+            var lobbytimeH = document.getElementById("lobbytimeH").value;
+            var lobbytimeM = document.getElementById("lobbytimeM").value;
+            if(lobbytimeH != "" && lobbytimeM != "") {
+            $(".popupL").hide();
+            $(".popupConfirm").show();
+            $(".dim").show();
+            document.getElementById("lobbyConfirm").innerHTML=lobbytimeH + "시간" + lobbytimeM + "분";
+            var dbTestRef = firebase.database().ref('tmp/')
+            dbTestRef.on('child_added', function(data){
+            console.log(lobbytimeM);
+            var currentuser = firebase.database().ref('CurrentUser/' + data.val()).set({"Lobby": lobbytimeH + "시간" + lobbytimeM + "분"});
+            var dbTestRef1 = firebase.database().ref('Establishment/Lobby/')
+            dbTestRef1.on('child_added', function(data){
+                var LobbyUser = firebase.database().ref('Establishment/Lobby').set({"Lobby": data.val()-1});
+            })
+        })
+        
+        }
+    }
+        
+        
+      </script>
+
+      <script>
+        var dbTestRef = firebase.database().ref('tmp/')
+        dbTestRef.on('child_added', function(data){
+        var dbTestRef2 = firebase.database().ref('Login/' + data.val() + '/' + data.val() + 1)
+        dbTestRef2.on('child_added', function(data){
+        document.getElementById("loginName").innerHTML=data.val();
+        })
+        })
+
+
+        
+
+        
+      </script>
+</body>
+</html>
