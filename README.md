@@ -42,10 +42,10 @@ html css javascript를 공부하는 동시에 파이썬을 활용하여 메이�
 		# display the label and bounding box rectangle on the output
 		# frame
 		
-		#if ser.readable():         #아두이노 시리얼 통신
-		#	res = ser.readline()
-		#	cv2.putText(frame, res.decode()[:len(res)-1], (100, 100),    #openCV에 통신값 출력
-		#	cv2.FONT_HERSHEY_SIMPLEX, 0.45, color, 2)
+		if ser.readable():         #아두이노 시리얼 통신
+			res = ser.readline()
+			cv2.putText(frame, res.decode()[:len(res)-1], (100, 100),    #openCV에 통신값 출력
+			cv2.FONT_HERSHEY_SIMPLEX, 0.45, color, 2)
 
 		cv2.putText(frame, label, (startX, startY - 10),
 			cv2.FONT_HERSHEY_SIMPLEX, 0.45, color, 2)
