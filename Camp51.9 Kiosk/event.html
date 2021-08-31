@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Camp51.9 Kiosk</title>
+    <link rel="stylesheet" type="text/css" href="styleEvent.css">
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.2.5/firebase.js"></script>
+    <style type="text/css"> a { text-decoration:none } </style>
+</head>
+<body>
+    <div class="part1">
+    <img src="camp.png" width="150" height="100"
+        alt="No Image"><br>
+        <h2><strong>Camp51.9</strong></h2>
+    <div class="user">
+    <h2><span id="loginName"></span> 님</h2> 
+    </div>
+    <br><a href=loginCamp.html>HOME으로</a>
+    <a href=reservation.html>이전 페이지</a>
+    </div>
+
+    <section>
+        <div class="popupConfirm" id="pop">
+            <h2><span id="lobbyConfirm"></span></h2><br>
+            <h2>이용하시겠습니까?</h2>
+                <div class="txt_center">
+                <a href="index.html" class="confirm_btn" style="cursor:pointer">확인</a>
+                </div>
+                <a href="equipment.html" class="close" style="cursor:pointer">닫기</a>
+                </div>
+                <div class="dim"></div>
+
+        <div class="popupL" id="pop">
+          <h2>행사 참여<br><h3 class="left">현재 진행 중인 행사가 없습니다</h3></h2>
+              <div class="txt_center">
+                <a href="reservation.html" class="btn_type1" id="writeFuncL" style="cursor:pointer">돌아가기</a>
+              </div>
+                <a href="reservation.html" class="close" style="cursor:pointer">닫기</a>
+              </div>
+              <div class="dim"></div> 
+    </section>
+    <script>
+      // Your web app's Firebase configuration
+      // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+      var firebaseConfig = {
+        apiKey: "AIzaSyABCveSwx-XCWZ8rE5P8SXAuasTQafzTLo",
+        authDomain: "campbase-cfe26.firebaseapp.com",
+        projectId: "campbase-cfe26",
+        storageBucket: "campbase-cfe26.appspot.com",
+        messagingSenderId: "685746183264",
+        appId: "1:685746183264:web:b46a98d10b54097ba7b705",
+        measurementId: "G-G708V50KPJ"
+      };
+      // Initialize Firebase
+      firebase.initializeApp(firebaseConfig);
+    </script>
+  
+      <script type="text/javascript">
+        $(".popupL").show();
+        $(".dim").show();
+
+
+        let today = new Date();   
+
+        let year = today.getFullYear(); // 년도
+        let month = today.getMonth() + 1;  // 월
+        let date = today.getDate();  // 날짜
+        let hours = today.getHours(); // 시
+        let minutes = today.getMinutes();  // 분
+
+        var signinButtonL = document.getElementById("signinButtonL") // 버튼을 만들고.
+        signinButtonL.addEventListener('click', signinFuncL) // 'click'이란 id의 버튼을 누르면 signinFunc 함수를 실행.
+        function signinFuncL () {
+		    
+        }
+        
+	    $(".popupL .close").on('click',function(){
+		    $(this).parent().hide();
+		    $(".dim").hide();
+        }); 
+        $(".popupLW .close").on('click',function(){
+		    $(this).parent().hide();
+		    $(".dim").hide();
+        });  
+        
+        var signinButtonL = document.getElementById("writeFuncL") // 버튼을 만들고.
+        signinButtonL.addEventListener('click', writeFuncL) // 'click'이란 id의 버튼을 누르면 signinFunc 함수를 실행.
+        function writeFuncL () {         
+            location.href="reservation.html"
+        }
+      </script>
+
+      <script>
+        var dbTestRef = firebase.database().ref('tmp/')
+        dbTestRef.on('child_added', function(data){
+        var dbTestRef2 = firebase.database().ref('Login/' + data.val() + '/' + data.val() + 1)
+        dbTestRef2.on('child_added', function(data){
+        document.getElementById("loginName").innerHTML=data.val();
+        })
+        })
+      </script>
+</body>
+</html>

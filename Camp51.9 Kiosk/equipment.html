@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Camp51.9 Kiosk</title>
+    <link rel="stylesheet" type="text/css" href="styleEquipment.css">
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.2.5/firebase.js"></script>
+    <style type="text/css"> a { text-decoration:none } .loginName{color: rgb(64, 251, 64);} .part1{ background-color: rgba(0, 0, 0, 0.500); width: 700px; height: 450px; border-radius: 10px;}</style>
+</head>
+<body>
+    <section>
+        <article>
+        <div class="part1">
+          <div class="img"><img src="logo_rectangle_white.png" width="130" height="50" style="float: left;" alt="No Image"></div>
+            <div class="user">
+              <h2 class="loginName"><span id="loginName"></span> 님</h2> 
+        </div>
+        <div class="parent1">
+            <img src="Logo_Rectangle_white.png" width="290" height="120"
+            alt="3D프린터" class="printerPic">
+            <img src="Logo_Rectangle_white.png" width="290" height="120"
+            alt="레이저커터" class="laserPic">
+        </div>
+        <div class="parent11">
+            <h2 class="click" id="signinButtonL" style="cursor: pointer;">3D프린터</h2>
+            <h2 class="click" id="signinButtonS" style="cursor: pointer;">레이저커터</h2>
+        </div>
+        <div class="parent2">
+          <img src="Logo_Rectangle_white.png" width="290" height="120"
+          alt="행사 참여" class="carpentryPic">
+          </div>
+          <div class="parent22">
+          <h2 class="click" id="signinButtonC" style="cursor:pointer" type="submit">목공실</h2>
+          <h2 class="click" style="cursor:pointer" type="submit">준비중</h2>
+          </div>
+          <a style="color:white;" href=index.html>Click to Home&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</a>
+          <a style="color:white;" href=reservation.html>&nbsp&nbsp&nbsp&nbsp&nbsp&nbspBack to Page</a>
+        </div>
+        </article>
+
+        <div class="popupX" id="pop">
+            <form method="post" autocomplete="off" name="google-sheet">
+            <input type="text" name="ID" id="googleId">
+            <input type="text" name="Name" id="googleName">  
+            <input type="text" name="Phone" id="googlePhone">
+            <input type="text" name="Time" id="googleTime">
+            <input type="text" name="Temp" id="googleTemp">
+            <input type="text" name="신청일" id="googleDay">
+            <input type="text" name="사용목적" id="googlePurpose">
+            <input type="text" name="사용시설" id="googleEstablishment">                      
+            <input type="text" name="시작시간" id="googleStartTime">
+            </form>
+            </div>
+            <div class="dim"></div>
+
+        <div class="popupConfirm" id="pop">
+            <h2>이용하시겠습니까?<h3 class="ps">이용을 위해 매니저를 불러주십시오.</h3></h2>
+                <div class="txt_center">
+                <a href="index.html" class="confirm_btn">확인</a>
+                </div>
+                <a href="equipment.html" class="close">닫기</a>
+                </div>
+                <div class="dim"></div>
+
+        <div class="popupL" id="pop">
+            <h2>3D프린터<h3>일반인:3000원(1h)/중고생:1000원(1h)</h3></h2>
+            
+              <div class="txt_center">
+                <form method="post" autocomplete="off" name="google-sheet">
+                <input type="text" id="Purpose" class="userPurpose" placeholder="사용목적을 입력해주세요.">
+                </form>
+                <a class="btn_type1" id="writeFuncL" style="cursor:pointer">3D프린터 이용하기</a>
+              </div>
+                <a href="#a" class="close">닫기</a>
+              </div>
+              <div class="dim"></div> 
+
+        <div class="popupS" id="pop">
+            <h2>레이저커터<h3>일반인:10000원(1h)/중고생:3000원(1h)</h3></h2>
+            
+                <div class="txt_center">
+                  <form method="post" autocomplete="off" name="google-sheet">
+                    <input type="text" id="Purpose2" class="userPurpose" placeholder="사용목적을 입력해주세요.">
+                  </form>
+                <a class="btn_type1" id="writeFuncS" style="cursor:pointer">레이저커터 이용하기</a>
+                </div>
+                <a href="#a" class="close">닫기</a>
+                </div>
+                <div class="dim"></div> 
+
+        <div class="popupC" id="pop">
+          <h2>목공실<h3>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;5000원(1h)/10000원(3h)</h3></h2>
+                  
+              <div class="txt_center">
+                <form method="post" autocomplete="off" name="google-sheet">
+                  <input type="text" id="Purpose3" class="userPurpose" placeholder="사용목적을 입력해주세요.">
+                </form>
+              <a class="btn_type1" id="writeFuncC" style="cursor:pointer">목공실 이용하기</a>
+              </div>
+              <a href="#a" class="close">닫기</a>
+              </div>
+              <div class="dim"></div> 
+    </section>
+    <script>
+        // Your web app's Firebase configuration
+        // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+        var firebaseConfig = {
+          apiKey: "AIzaSyABCveSwx-XCWZ8rE5P8SXAuasTQafzTLo",
+          authDomain: "campbase-cfe26.firebaseapp.com",
+          projectId: "campbase-cfe26",
+          storageBucket: "campbase-cfe26.appspot.com",
+          messagingSenderId: "685746183264",
+          appId: "1:685746183264:web:b46a98d10b54097ba7b705",
+          measurementId: "G-G708V50KPJ"
+        };
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+      </script>
+  
+      <script type="text/javascript">
+
+        let today = new Date();   
+
+        let year = today.getFullYear(); // 년도
+        let month = today.getMonth() + 1;  // 월
+        let date = today.getDate();  // 날짜
+        let hours = today.getHours(); // 시
+        let minutes = today.getMinutes();  // 분
+
+        var signinButtonL = document.getElementById("signinButtonL") // 버튼을 만들고.
+        signinButtonL.addEventListener('click', signinFuncL) // 'click'이란 id의 버튼을 누르면 signinFunc 함수를 실행.
+        function signinFuncL () {
+		    $(".popupL").show();
+        $(".dim").show();
+        }
+        
+	    $(".popupL .close").on('click',function(){
+		    $(this).parent().hide();
+		    $(".dim").hide();
+        }); 
+        $(".popupLW .close").on('click',function(){
+		    $(this).parent().hide();
+		    $(".dim").hide();
+        });  
+
+        var signinButtonS = document.getElementById("signinButtonS") // 버튼을 만들고.
+        signinButtonS.addEventListener('click', signinFuncS) // 'click'이란 id의 버튼을 누르면 signinFunc 함수를 실행.
+        function signinFuncS () {
+		    $(".popupS").show();
+        $(".dim").show();       
+        }
+        
+	    $(".popupS .close").on('click',function(){
+		    $(this).parent().hide();
+		    $(".dim").hide();
+        }); 
+        $(".popupSW .close").on('click',function(){
+		    $(this).parent().hide();
+		    $(".dim").hide();
+        });
+
+        var signinButtonC = document.getElementById("signinButtonC") // 버튼을 만들고.
+        signinButtonC.addEventListener('click', signinFuncC) // 'click'이란 id의 버튼을 누르면 signinFunc 함수를 실행.
+        function signinFuncC () {
+		    $(".popupC").show();
+        $(".dim").show();       
+        }
+        
+	    $(".popupC .close").on('click',function(){
+		    $(this).parent().hide();
+		    $(".dim").hide();
+        }); 
+        $(".popupCW .close").on('click',function(){
+		    $(this).parent().hide();
+		    $(".dim").hide();
+        });
+
+        
+
+        var signinButtonL = document.getElementById("writeFuncL") // 버튼을 만들고.
+        signinButtonL.addEventListener('click', writeFuncL) // 'click'이란 id의 버튼을 누르면 signinFunc 함수를 실행.
+        function writeFuncL () {         
+            $(".popupL").hide();
+            $(".popupConfirm").show();
+            $(".dim").show();
+            var str = document.getElementById("Purpose").value;
+            document.getElementById("googlePurpose").value=str;
+            document.getElementById("googleEstablishment").value="3D 프린터"; 
+            var dbTestRef2 = firebase.database().ref('tmp/')
+            dbTestRef2.on('child_added', function(data){
+            var day = firebase.database().ref('User/Day' + year + month + date).set({"Day": year + '/' + month + '/' + date});
+            var userCurrentTime = firebase.database().ref('Day' + year + month + date + '/' + data.val()).set({"외부인 3D프린터": hours + '시' + minutes + '분'});
+            })
+        }
+
+        var signinButtonS = document.getElementById("writeFuncS") // 버튼을 만들고.
+        signinButtonS.addEventListener('click', writeFuncS) // 'click'이란 id의 버튼을 누르면 signinFunc 함수를 실행.
+        function writeFuncS () {
+            $(".popupS").hide();
+            $(".popupConfirm").show();
+            $(".dim").show();
+            var str = document.getElementById("Purpose2").value;
+            console.log(str);
+            document.getElementById("googlePurpose").value=str;
+            document.getElementById("googleEstablishment").value="레이저커터"; 
+            var dbTestRef2 = firebase.database().ref('tmp/')
+            dbTestRef2.on('child_added', function(data){
+            var day = firebase.database().ref('User/Day' + year + month + date).set({"Day": year + '/' + month + '/' + date});
+            var userCurrentTime = firebase.database().ref('Day' + year + month + date + '/' + data.val()).set({"외부인 레이저커터": hours + '시' + minutes + '분'});
+            })
+        }
+
+        var signinButtonC = document.getElementById("writeFuncC") // 버튼을 만들고.
+        signinButtonC.addEventListener('click', writeFuncC) // 'click'이란 id의 버튼을 누르면 signinFunc 함수를 실행.
+        function writeFuncC () {
+            $(".popupC").hide();
+            $(".popupConfirm").show();
+            $(".dim").show();
+            var str = document.getElementById("Purpose3").value;
+            console.log(str);
+            document.getElementById("googlePurpose").value=str;
+            document.getElementById("googleEstablishment").value="목공장비"; 
+            var dbTestRef2 = firebase.database().ref('tmp/')
+            dbTestRef2.on('child_added', function(data){
+            var day = firebase.database().ref('User/Day' + year + month + date).set({"Day": year + '/' + month + '/' + date});
+            var userCurrentTime = firebase.database().ref('Day' + year + month + date + '/' + data.val()).set({"외부인 목공장비": hours + '시' + minutes + '분'});
+            })
+        }
+      </script>
+
+      <script>
+        var dbTestRef = firebase.database().ref('tmp/')
+        dbTestRef.on('child_added', function(data){
+        document.getElementById("googleId").value=data.val();
+        var dbTestRef2 = firebase.database().ref('Login/' + data.val() + '/' + data.val() + 1)
+        var dbTestRef3 = firebase.database().ref('Login/' + data.val() + '/' + data.val() + 2)
+        dbTestRef2.on('child_added', function(data){
+        document.getElementById("loginName").innerHTML=data.val();
+        document.getElementById("googleName").value=data.val();
+        })
+        dbTestRef3.on('child_added', function(data){
+        document.getElementById("googlePhone").value=data.val();
+        })
+        })
+        var dbTestRef = firebase.database().ref('tmpTemp/')
+        dbTestRef.on('child_added', function(data){
+        document.getElementById("googleTemp").value=data.val();
+        })
+        document.getElementById("googleTime").value=year + "/" + month + "/" + date + "/" + hours + ":" + minutes;
+        document.getElementById("googleDay").value=year + "/" + month + "/" + date;
+        document.getElementById("googleStartTime").value=hours + ":" + minutes;
+        
+        
+      </script>
+
+<script>
+    
+    const scriptURL = 'https://script.google.com/macros/s/AKfycbzD_6ZgEBY12fZIeW9gq0BEAfA_-R9ba6XFP36N_-FR71VDwAVjpMAB/exec'
+    const form = document.forms['google-sheet']
+  
+    signinButtonL.addEventListener('click', e => {
+      e.preventDefault()
+      fetch(scriptURL, { method: 'POST', body: new FormData(form)})
+        
+        .catch(error => console.error('Error!', error.message))
+    })
+
+    signinButtonS.addEventListener('click', e => {
+      e.preventDefault()
+      fetch(scriptURL, { method: 'POST', body: new FormData(form)})
+        
+        .catch(error => console.error('Error!', error.message))
+    })
+
+    signinButtonC.addEventListener('click', e => {
+      e.preventDefault()
+      fetch(scriptURL, { method: 'POST', body: new FormData(form)})
+        
+        .catch(error => console.error('Error!', error.message))
+    })
+    </script>
+
+<script>
+    
+  const scriptURL2 = 'https://script.google.com/macros/s/AKfycbxgVrGm7sWwBAIMdRmHIsW4wXa6vSRfRU-TC6wD/exec'
+  const form2 = document.forms['google-sheet']
+
+  signinButtonL.addEventListener('click', e => {
+    e.preventDefault()
+    fetch(scriptURL2, { method: 'POST', body: new FormData(form2)})
+      
+      .catch(error => console.error('Error!', error.message))
+  })
+
+  signinButtonS.addEventListener('click', e => {
+    e.preventDefault()
+    fetch(scriptURL2, { method: 'POST', body: new FormData(form2)})
+      
+      .catch(error => console.error('Error!', error.message))
+  })
+
+  signinButtonC.addEventListener('click', e => {
+    e.preventDefault()
+    fetch(scriptURL2, { method: 'POST', body: new FormData(form2)})
+      
+      .catch(error => console.error('Error!', error.message))
+  })
+  </script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+</body>
+</html>

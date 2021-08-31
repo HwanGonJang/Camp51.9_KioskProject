@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" type="text/css" href="styleEquipment.css">
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.2.5/firebase.js"></script>
+    <style type="text/css"> a { text-decoration:none } </style>
+    <title>Camp51.9 Kiosk</title>
+</head>
+<body>
+    <header>      
+    </header>
+
+    <section>
+     <div class="part1">
+        <article>
+            <img class="p2" src="camp.png" width="150" height="100"
+            alt="No Image"><br>
+           <h2 class="p2"><strong>Camp51.9</strong></h2>
+            <form method="post" autocomplete="off" name="google-sheet">
+            <input type="text" name="사용료" class="userid" placeholder = "사용료를 입력하세요" id = "userid" autocomplete="off" required>
+            </form>
+            <br><span class="click" id="signinButton" style="cursor:pointer">Login</span>      
+        </article>
+      </div>
+
+      <div class="popupX" id="pop">    
+        <form method="post" autocomplete="off" name="google-sheet">                
+        <input type="text" name="종료시간" id="googleEndTime">
+        </form>
+        </div>
+        <div class="dim"></div>
+
+        <div class="popup" id="pop">
+          <h2><span id="write"></span></h2>
+
+            <div class="txt_center">
+              <a href="managerCharging.html" target="_self" class="btn_type1" style="cursor:pointer">금액 입력하기</a>
+              
+            </div>
+              <a href="#a" class="close">닫기</a>
+            </div>
+            <div class="dim"></div> 
+    </section>
+</form>
+</body>
+    <script type="text/javascript">
+        let today = new Date();   
+
+        let year = today.getFullYear(); // 년도
+        let month = today.getMonth() + 1;  // 월
+        let date = today.getDate();  // 날짜
+        let hours = today.getHours(); // 시
+        let minutes = today.getMinutes();  // 분
+
+    var signinButton = document.getElementById("signinButton") // 버튼을 만들고.
+    signinButton.addEventListener('click', signinFunc) // 'click'이란 id의 버튼을 누르면 signinFunc 함수를 실행.
+    function signinFunc () {
+      var userid = document.getElementById("userid").value;
+      if(userid != "") {
+          document.getElementById("write").innerHTML=userid + "원 <br>입력하시겠습니까?";
+          $(".popup").show();
+          $(".dim").show();       
+      } 
+    }  
+    
+    $(".popup .close").on('click',function(){
+		    $(this).parent().hide();
+		    $(".dim").hide();
+        });  
+   </script>
+  <script>
+    
+    const scriptURL = 'https://script.google.com/macros/s/AKfycbxgVrGm7sWwBAIMdRmHIsW4wXa6vSRfRU-TC6wD/exec'
+    const form = document.forms['google-sheet']
+  
+    signinButton.addEventListener('click', e => {
+      e.preventDefault()
+      fetch(scriptURL, { method: 'POST', body: new FormData(form)})
+        
+        .catch(error => console.error('Error!', error.message))
+    })
+    </script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+    
+
+</html>

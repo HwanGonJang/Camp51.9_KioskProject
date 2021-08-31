@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" type="text/css" href="stylelogin.css">
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.2.5/firebase.js"></script>
+    <style type="text/css"> a { text-decoration:none } .btn_type3{color : white;} .signupText{color : white;} .userid{ margin: 40px; } .part1{ background-color: rgba(0, 0, 0, 0.500); width: 700px; height: 450px; border-radius: 10px;}</style>
+    <title>Camp51.9 Kiosk</title>
+</head>
+<body>
+    <header>      
+    </header>
+
+    <section>
+     <div class="part1">
+        <div>
+            <img class="p2" src="Logo_Square_White.png" width="200" height="200"
+            alt="No Image"><br>
+            <form name="fo" method="get" >
+            
+            <input type="text" class="Userid" placeholder = "아이디를 입력하세요" id = "userid" autocomplete="off" required>
+            <br><input type="text" class="usertemp" placeholder = "체온을 입력하세요" id = "usertemp" autocomplete="off" required>
+            <br><span class="click" id="signinButton" style="cursor:pointer">Login</span>
+            <a href="unsignedLogin.html" class="btn_type2" id="writeFuncL" style="cursor:pointer">비회원 로그인</a>
+            <br><br><span class="signupText">방문이 처음이신가요?</span><br>
+            <a href="signupCamp.html" class="btn_type3">Click to Sign Up!</a>
+            </div>
+      </div>
+
+        <div class="popup" id="pop">
+          <h2><span id="write"></span></h2>
+
+            <div class="txt_center">
+              <a href="reservation.html" target="_self" class="btn_type1" style="cursor:pointer">캠프 이용하기</a>
+            </div>
+              <a href="#a" class="close">닫기</a>
+            </div>
+            <div class="dim"></div>
+            <div class="popupConfirm" id="pop">
+              <h2>퇴장되었습니다.</h2>
+                  <div class="txt_center">
+                  <a href="index.html" class="confirm_btn" style="cursor:pointer">확인</a>
+                  </div>
+                  <a href="index.html" class="close" style="cursor:pointer">닫기</a>
+                  </div>
+                  <div class="dim"></div>
+    </section>
+</form>
+</body>
+<script>
+  // Your web app's Firebase configuration
+  // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+  var firebaseConfig = {
+    apiKey: "AIzaSyABCveSwx-XCWZ8rE5P8SXAuasTQafzTLo",
+    authDomain: "campbase-cfe26.firebaseapp.com",
+    projectId: "campbase-cfe26",
+    storageBucket: "campbase-cfe26.appspot.com",
+    messagingSenderId: "685746183264",
+    appId: "1:685746183264:web:b46a98d10b54097ba7b705",
+    measurementId: "G-G708V50KPJ"
+  };
+  // Initialize Firebase
+  firebase.initializeApp(firebaseConfig);
+</script>
+    <script type="text/javascript">
+        let today = new Date();   
+
+        let year = today.getFullYear(); // 년도
+        let month = today.getMonth() + 1;  // 월
+        let date = today.getDate();  // 날짜
+        let hours = today.getHours(); // 시
+        let minutes = today.getMinutes();  // 분
+
+    var signinButton = document.getElementById("signinButton") // 버튼을 만들고.
+    signinButton.addEventListener('click', signinFunc) // 'click'이란 id의 버튼을 누르면 signinFunc 함수를 실행.
+    function signinFunc () {
+      var userid = document.getElementById("userid").value;
+      var usertemp = document.getElementById("usertemp").value;
+      if(userid != "" && usertemp != "") {
+         var dbTestRef = firebase.database().ref('Login/' + userid + '/' + userid + 1 + '/')
+          dbTestRef.on('child_added', function(data){
+          document.getElementById("write").innerHTML=data.val() + " 님으로<br>로그인하시겠습니까?";
+          $(".popup").show();
+          $(".dim").show();
+         })
+         var tmp = firebase.database().ref('tmp/').set({"tmpName": userid});
+         var tmp = firebase.database().ref('tmpTemp/').set({"tmpTemp": usertemp});
+      } 
+    }
+    
+    $(".popup .close").on('click',function(){
+          $(this).parent().hide();
+          $(".dim").hide();
+          location.href = "index.html"
+        });    
+      
+        
+
+            var dbTestRef2 = firebase.database().ref('tmp/')
+            dbTestRef2.on('child_added', function(data){
+            var day = firebase.database().ref('User/Day' + year + month + date).set({"Day": year + '/' + month + '/' + date});
+            var userCurrentTime = firebase.database().ref('Day' + year + month + date + '/' + data.val() + '/' + data.val() + 'End').set({"null": hours + '시' + minutes + '분'});
+          })
+      
+      
+    </script>
+    <script>
+    
+      const scriptURL = 'https://script.google.com/macros/s/AKfycbzD_6ZgEBY12fZIeW9gq0BEAfA_-R9ba6XFP36N_-FR71VDwAVjpMAB/exec'
+      const form = document.forms['google-sheet']
+    
+      signinButton.addEventListener('click', e => {
+        e.preventDefault()
+        fetch(scriptURL, { method: 'POST', body: new FormData(form)})
+          
+          .catch(error => console.error('Error!', error.message))
+      })
+      </script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+    
+
+</html>

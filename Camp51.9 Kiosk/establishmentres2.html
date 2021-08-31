@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Camp51.9 Kiosk</title>
+    <link rel="stylesheet" type="text/css" href="styleEstablishment.css">
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.2.5/firebase.js"></script>
+    <style type="text/css"> a { text-decoration:none } .loginName{ color: rgb(64, 251, 64);} .part1{ background-color: rgba(0, 0, 0, 0.500); width: 700px; height: 450px; border-radius: 10px;}</style>
+</head>
+<body>
+    <header>
+        
+    </header>
+
+    
+
+    <section>
+        
+        <article>
+            <div class="part1">
+                <div class="img"><img src="Logo_Rectangle_White.png" width="130" height="50" style="float: left;" alt="No Image"></div>
+            <div class="user">
+                <h2 class="loginName"><span id="loginName"></span> 님</h2> 
+            </div>
+            <div class="parent1">
+                <img src="Logo_Rectangle_White.png" width="260" height="110"
+                alt="로비 이용" class="lobbyPic">
+                <img src="Logo_Rectangle_White.png" width="260" height="110"
+                alt="세미나실 이용" class="seminarPic">
+            </div>
+            <div class="parent11">
+                <h2 class="click" id="signinButtonL" style="cursor:pointer" type="submit">로비</h2>
+                <h2 class="click" id="signinButtonS" style="cursor:pointer" type="submit">세미나실</h2>
+            </div>
+            <div class="parent2">
+                <img src="Logo_Rectangle_White.png" width="260" height="110"
+                alt="행사 참여" class="carpentryPic">
+                <img src="Logo_Rectangle_White.png" width="260" height="110"
+                alt="기타" class="pcPic">
+            </div>
+            <div class="parent22">
+            <h2 class="click" id="signinButtonC" style="cursor:pointer" type="submit">목공실</h2>
+            <h2 class="click" id="signinButtonP" style="cursor:pointer" type="submit">영상제작실</h2>
+            </div>
+            <a style="color:white;" href=index.html>Click to Home&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</a>
+            <a style="color:white;" href=reservation2.html>&nbsp&nbsp&nbsp&nbsp&nbsp&nbspBack to Page</a>
+            </div>
+        </article>
+
+        <div class="popupX" id="pop">
+            <form method="post" autocomplete="off" name="google-sheet">
+            <input type="text" name="ID" id="googleId" value="비회원 로그인">
+            <input type="text" name="Name" id="googleName">
+            <input type="text" name="Phone" id="googlePhone" value="-">
+            <input type="text" name="Time" id="googleTime">
+            <input type="text" name="Temp" id="googleTemp">
+            </form>
+            </div>
+            <div class="dim"></div> 
+
+        <div class="popupConfirm" id="pop">
+           <h2>이용하시겠습니까?</h2>
+                <div class="txt_center">
+                <a href="index.html" class="confirm_btn" style="cursor:pointer">확인</a>
+                </div>
+                <a href="establishmentRes2.html" class="close" style="cursor:pointer">닫기</a>
+                </div>
+                <div class="dim"></div>
+
+        <div class="popupL" id="pop">
+            <h2 style="font-size: 27px;">로비를 이용하시겠습니까?</h2>
+              <div class="txt_center">
+                <a class="btn_type1" id="writeFuncL" style="cursor:pointer">로비 이용하기</a>
+                <br><br><p style="font-size: 13px;">※ 이용하기를 누르면 이용 대장에 정보가 입력됩니다.</p>
+              </div>
+                <a href="#a" class="close">닫기</a>
+              </div>
+              <div class="dim"></div> 
+
+        <div class="popupLW" id="pop">
+                <div class="txt_center">
+                <a href="establishmentRes2.html" class="btn_type2" style="cursor:pointer">이용불가</a>
+                </div>
+                <a href="establishmentRes2.html" class="close">닫기</a>
+                </div>
+                <div class="dim"></div> 
+
+        <div class="popupS" id="pop">
+            <h2 style="font-size: 23px;">세미나실을 이용하시겠습니까?</h2>
+                <div class="txt_center">
+                <a class="btn_type1" id="writeFuncS" style="cursor:pointer">세미나실 이용하기</a>
+                <br><br><p style="font-size: 13px;">※ 이용하기를 누르면 이용 대장에 정보가 입력됩니다.</p>
+                </div>
+                <a href="#a" class="close">닫기</a>
+                </div>
+                <div class="dim"></div> 
+        
+        <div class="popupSW" id="pop">
+              
+                <div class="txt_center">
+                <a href="establishmentRes2.html" class="btn_type2" style="cursor:pointer">이용불가</a>
+                </div>
+                <a href="establishmentRes2.html" class="close">닫기</a>
+                </div>
+                <div class="dim"></div>
+
+
+        
+        <div class="popupC" id="pop">
+            <h2 style="font-size: 25px;">목공실을 이용하시겠습니까?</h2>
+              <div class="txt_center">
+                <a class="btn_type1" id="writeFuncC" style="cursor:pointer">목공실 이용하기</a>
+                <br><br><p style="font-size: 13px;">※ 이용하기를 누르면 이용 대장에 정보가 입력됩니다.</p>
+              </div>
+                <a href="#a" class="close">닫기</a>
+              </div>
+              <div class="dim"></div> 
+
+        <div class="popupCW" id="pop">
+      
+                <div class="txt_center">
+                <a href="establishmentRes2.html" class="btn_type2" style="cursor:pointer">이용불가</a>
+                </div>
+                <a href="establishmentRes2.html" class="close">닫기</a>
+                </div>
+                <div class="dim"></div> 
+
+        <div class="popupP" id="pop">
+            <h2 style="font-size: 22px;">영상제작실을 이용하시겠습니까?</h2>
+                <div class="txt_center">
+                <a class="btn_type1" id="writeFuncP" style="cursor:pointer; font-size: 20px;">영상제작실 이용하기</a>
+                <br><br><p style="font-size: 13px;">※ 이용하기를 누르면 이용 대장에 정보가 입력됩니다.</p>
+                </div>
+                <a href="#a" class="close">닫기</a>
+                </div>
+                <div class="dim"></div> 
+        
+        <div class="popupPW" id="pop">
+              
+                <div class="txt_center">
+                <a href="establishmentRes2.html" class="btn_type2" style="cursor:pointer">이용불가</a>
+                </div>
+                <a href="establishmentRes2.html" class="close">닫기</a>
+                </div>
+                <div class="dim"></div>
+
+
+    </section>
+    <script>
+        // Your web app's Firebase configuration
+        // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+        var firebaseConfig = {
+          apiKey: "AIzaSyABCveSwx-XCWZ8rE5P8SXAuasTQafzTLo",
+          authDomain: "campbase-cfe26.firebaseapp.com",
+          projectId: "campbase-cfe26",
+          storageBucket: "campbase-cfe26.appspot.com",
+          messagingSenderId: "685746183264",
+          appId: "1:685746183264:web:b46a98d10b54097ba7b705",
+          measurementId: "G-G708V50KPJ"
+        };
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+      </script>
+  
+      <script type="text/javascript">
+
+        let today = new Date();   
+
+        let year = today.getFullYear(); // 년도
+        let month = today.getMonth() + 1;  // 월
+        let date = today.getDate();  // 날짜
+        let hours = today.getHours(); // 시
+        let minutes = today.getMinutes();  // 분
+
+        var signinButtonL = document.getElementById("signinButtonL") // 버튼을 만들고.
+        signinButtonL.addEventListener('click', signinFuncL) // 'click'이란 id의 버튼을 누르면 signinFunc 함수를 실행.
+        function signinFuncL () {
+		    $(".popupL").show();
+            $(".dim").show();
+            var dbTestRef1 = firebase.database().ref('Establishment/Lobby/')
+            dbTestRef1.on('child_added', function(data){
+            document.getElementById("lobby").innerHTML=data.val();
+            if(data.val() <= 0) {
+                $(".popupLW").show();
+                
+                document.getElementById("lobbyW").innerHTML=data.val();
+            }
+        })
+        }
+        
+	    $(".popupL .close").on('click',function(){
+		    $(this).parent().hide();
+		    $(".dim").hide();
+        }); 
+        $(".popupLW .close").on('click',function(){
+		    $(this).parent().hide();
+		    $(".dim").hide();
+        });  
+
+        var signinButtonS = document.getElementById("signinButtonS") // 버튼을 만들고.
+        signinButtonS.addEventListener('click', signinFuncS) // 'click'이란 id의 버튼을 누르면 signinFunc 함수를 실행.
+        function signinFuncS () {
+		    $(".popupS").show();
+            $(".dim").show();
+            var dbTestRef1 = firebase.database().ref('Establishment/Seminar/')
+            dbTestRef1.on('child_added', function(data){
+            document.getElementById("seminar").innerHTML=data.val();
+            if(data.val() <= 0) {
+                $(".popupSW").show();
+                document.getElementById("seminarW").innerHTML=data.val();
+            }
+        })
+        }
+        
+	    $(".popupS .close").on('click',function(){
+		    $(this).parent().hide();
+		    $(".dim").hide();
+        }); 
+        $(".popupSW .close").on('click',function(){
+		    $(this).parent().hide();
+		    $(".dim").hide();
+        });
+
+        var signinButtonC = document.getElementById("signinButtonC") // 버튼을 만들고.
+        signinButtonC.addEventListener('click', signinFuncC) // 'click'이란 id의 버튼을 누르면 signinFunc 함수를 실행.
+        function signinFuncC () {
+		    $(".popupC").show();
+            $(".dim").show();
+            var dbTestRef1 = firebase.database().ref('Establishment/Carpentry/')
+            dbTestRef1.on('child_added', function(data){
+            document.getElementById("carpentry").innerHTML=data.val();
+            if(data.val() <= 0) {
+                $(".popupCW").show();
+                document.getElementById("carpentryW").innerHTML=data.val();
+            }
+        })
+        }
+        
+	    $(".popupC .close").on('click',function(){
+		    $(this).parent().hide();
+		    $(".dim").hide();
+        }); 
+        $(".popupCW .close").on('click',function(){
+		    $(this).parent().hide();
+		    $(".dim").hide();
+        });
+
+        var signinButtonP = document.getElementById("signinButtonP") // 버튼을 만들고.
+        signinButtonP.addEventListener('click', signinFuncP) // 'click'이란 id의 버튼을 누르면 signinFunc 함수를 실행.
+        function signinFuncP () {
+		    $(".popupP").show();
+            $(".dim").show();
+            var dbTestRef1 = firebase.database().ref('Establishment/PC/')
+            dbTestRef1.on('child_added', function(data){
+            document.getElementById("pc").innerHTML=data.val();
+            if(data.val() <= 0) {
+                $(".popupPW").show();
+                document.getElementById("pcW").innerHTML=data.val();
+            }
+        })
+        }
+        
+	    $(".popupP .close").on('click',function(){
+		    $(this).parent().hide();
+		    $(".dim").hide();
+        }); 
+        $(".popupPW .close").on('click',function(){
+		    $(this).parent().hide();
+		    $(".dim").hide();
+        });
+
+        var signinButtonL = document.getElementById("writeFuncL") // 버튼을 만들고.
+        signinButtonL.addEventListener('click', writeFuncL) // 'click'이란 id의 버튼을 누르면 signinFunc 함수를 실행.
+        function writeFuncL () {
+            
+            $(".popupL").hide();
+            $(".popupConfirm").show();
+            $(".dim").show();
+            var dbTestRef1 = firebase.database().ref('Establishment/Lobby/')
+            dbTestRef1.on('child_added', function(data){
+                var LobbyUser = firebase.database().ref('Establishment/Lobby').set({"null": data.val()});
+            })
+
+            var dbTestRef2 = firebase.database().ref('tmp/')
+            dbTestRef2.on('child_added', function(data){
+            var day = firebase.database().ref('User/Day' + year + month + date).set({"Day": year + '/' + month + '/' + date});
+            var userCurrentTime = firebase.database().ref('Day' + year + month + date + '/' + data.val()).set({"Lobby": hours + '시' + minutes + '분'});
+            var dbRefObject5 = firebase.database().ref('Login/'+ data.val() + '/' + data.val() + 6).set({"Lobby": 'Lobby'});
+        })
+        }
+
+        var signinButtonS = document.getElementById("writeFuncS") // 버튼을 만들고.
+        signinButtonS.addEventListener('click', writeFuncS) // 'click'이란 id의 버튼을 누르면 signinFunc 함수를 실행.
+        function writeFuncS () {
+            $(".popupS").hide();
+            $(".popupConfirm").show();
+            $(".dim").show();
+            var dbTestRef1 = firebase.database().ref('Establishment/Seminar/')
+            dbTestRef1.on('child_added', function(data){
+                var LobbyUser = firebase.database().ref('Establishment/Seminar').set({"null": data.val()});
+                
+            })
+
+            var dbTestRef2 = firebase.database().ref('tmp/')
+            dbTestRef2.on('child_added', function(data){
+            var day = firebase.database().ref('User/Day' + year + month + date).set({"Day": year + '/' + month + '/' + date});
+            var userCurrentTime = firebase.database().ref('Day' + year + month + date + '/' + data.val()).set({"seminar": hours + '시' + minutes + '분'});
+            var dbRefObject5 = firebase.database().ref('Login/'+ data.val() + '/' + data.val() + 6).set({"Seminar": 'Seminar'});
+            })
+        }
+
+        var signinButtonC = document.getElementById("writeFuncC") // 버튼을 만들고.
+        signinButtonC.addEventListener('click', writeFuncC) // 'click'이란 id의 버튼을 누르면 signinFunc 함수를 실행.
+        function writeFuncC () {
+            $(".popupC").hide();
+            $(".popupConfirm").show();
+            $(".dim").show();
+            var dbTestRef1 = firebase.database().ref('Establishment/Carpentry/')
+            dbTestRef1.on('child_added', function(data){
+                var LobbyUser = firebase.database().ref('Establishment/Carpentry').set({"null": data.val()});
+            })
+
+            var dbTestRef2 = firebase.database().ref('tmp/')
+            dbTestRef2.on('child_added', function(data){
+            var day = firebase.database().ref('User/Day' + year + month + date).set({"Day": year + '/' + month + '/' + date});
+            var userCurrentTime = firebase.database().ref('Day' + year + month + date + '/' + data.val()).set({"carpentry": hours + '시' + minutes + '분'});
+            var dbRefObject5 = firebase.database().ref('Login/'+ data.val() + '/' + data.val() + 6).set({"Carpentry": 'Carpentry'});
+            })
+        }
+    
+        var signinButtonP = document.getElementById("writeFuncP") // 버튼을 만들고.
+        signinButtonP.addEventListener('click', writeFuncP) // 'click'이란 id의 버튼을 누르면 signinFunc 함수를 실행.
+        function writeFuncP () {
+            $(".popupP").hide();
+            $(".popupConfirm").show();
+            $(".dim").show();
+            var dbTestRef1 = firebase.database().ref('Establishment/PC/')
+            dbTestRef1.on('child_added', function(data){
+                var LobbyUser = firebase.database().ref('Establishment/PC').set({"null": data.val()});
+            })
+
+            var dbTestRef2 = firebase.database().ref('tmp/')
+            dbTestRef2.on('child_added', function(data){
+            var day = firebase.database().ref('User/Day' + year + month + date).set({"Day": year + '/' + month + '/' + date});
+            var userCurrentTime = firebase.database().ref('Day' + year + month + date + '/' + data.val()).set({"pc": hours + '시' + minutes + '분'});
+            var dbRefObject5 = firebase.database().ref('Login/'+ data.val() + '/' + data.val() + 6).set({"PC": 'PC'});
+            })
+        }
+        document.getElementById("googleTime").value=year + "/" + month + "/" + date + "/" + hours + ":" + minutes;
+      </script>
+
+      <script>
+        var dbTestRef = firebase.database().ref('tmp/')
+        dbTestRef.on('child_added', function(data){
+        document.getElementById("googleName").value=data.val();
+        document.getElementById("loginName").innerHTML=data.val();
+        })
+        var dbTestRef = firebase.database().ref('tmpTemp/')
+        dbTestRef.on('child_added', function(data){
+        document.getElementById("googleTemp").value=data.val();
+        })
+      </script>
+
+    <script>
+    
+    const scriptURL = 'https://script.google.com/macros/s/AKfycbzD_6ZgEBY12fZIeW9gq0BEAfA_-R9ba6XFP36N_-FR71VDwAVjpMAB/exec'
+    const form = document.forms['google-sheet']
+  
+    signinButtonL.addEventListener('click', e => {
+      e.preventDefault()
+      fetch(scriptURL, { method: 'POST', body: new FormData(form)})
+        
+        .catch(error => console.error('Error!', error.message))
+    })
+
+    signinButtonS.addEventListener('click', e => {
+      e.preventDefault()
+      fetch(scriptURL, { method: 'POST', body: new FormData(form)})
+        
+        .catch(error => console.error('Error!', error.message))
+    })
+
+    signinButtonC.addEventListener('click', e => {
+      e.preventDefault()
+      fetch(scriptURL, { method: 'POST', body: new FormData(form)})
+        
+        .catch(error => console.error('Error!', error.message))
+    })
+
+    signinButtonP.addEventListener('click', e => {
+      e.preventDefault()
+      fetch(scriptURL, { method: 'POST', body: new FormData(form)})
+        
+        .catch(error => console.error('Error!', error.message))
+    })
+    </script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+</body>
+</html>
